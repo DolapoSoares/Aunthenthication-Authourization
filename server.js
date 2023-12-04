@@ -12,7 +12,7 @@ var corsOptions = {
 const Role = db.role;
 
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+  .connect(`mongodb://dolapo:IAMsoares04@cluster0.kccbfpf.mongodb.net:27017/`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -36,6 +36,11 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to kimberly application." });
 });
+
+// routes
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
